@@ -1,0 +1,8 @@
+{
+  "name": "Task 1",
+  "description": "This is a sample task.",
+  "dueDate": "2023-10-30",
+  "priority": "High",
+  "status": "In Progress",
+  "assignedUser": 1
+}
