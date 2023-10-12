@@ -1,0 +1,26 @@
+[
+  {
+    "username": "pharo",
+    "name": "Felix Wilson Gbedemah",
+    "email": "pharo09@gmail.com",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "tasks": ["Identify the issue", "Debug code", "Verify the fix."]
+  },
+  {
+    "username": "skanty",
+    "name": "Gifty Akpene Gbedemah",
+    "email": "Skanty@gmail.com",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "tasks": ["Send invitations", "Book a venue", "Prepare catering."]
+  },
+  {
+    "username": "papa bills",
+    "name": "Theophilus Akahoho",
+    "email": "papabills@gmail.com",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "tasks": ["Buy groceries", "Pay bills", "Go to work"]
+  }
+]

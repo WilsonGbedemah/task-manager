@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express');
 const router = express.Router();
 
@@ -5,8 +6,6 @@ const taskController = require('../controllers/task');
 
 router.get('/', taskController.getAll);
 
-router.get('/:id', taskController.getSingle);
-
-router.post('/', taskController.createContact);
+router.post('/', taskController.createTask);
 
 module.exports = router;

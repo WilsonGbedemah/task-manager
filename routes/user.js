@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express');
 const router = express.Router();
 
@@ -5,7 +6,9 @@ const userController = require('../controllers/user');
 
 router.get('/', userController.getAll);
 
-router.post('/', userController.createContact);
+router.get('/:username', userController.getUser);
+
+router.post('/', userController.createUser);
 
 
 

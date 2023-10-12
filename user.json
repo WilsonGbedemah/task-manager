@@ -1,7 +1,0 @@
-{
-  "name": "Felix Wilson Gbedemah",
-  "email": "pharo@gmail.com",
-  "password": "SecurePassword123",
-  "roles": ["user", "admin"],
-  "permissions": ["user:read", "user:write", "task:read", "task:write"]
-}

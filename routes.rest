@@ -1,0 +1,75 @@
+// LOCALHOST
+###
+GET http://localhost:8080/contacts
+
+
+###
+GET http://localhost:8080/task
+
+i
+### Get user by username
+GET http://localhost:8080/user/username/pharo
+
+###
+GET http://localhost:8080/contacts/651561fd3c8ebf6904fb39ed
+###
+GET http://localhost:8080/contacts/651561fd3c8ebf6904fb39ee
+
+### Create single contact
+POST http://localhost:8080/contacts HTTP/1.1 
+content-type: application/json
+
+{
+"firstName":"Lucas", "lastName":"Kuma", "email":"Lucas1@gmail.com", "favoriteColor":"Red", "birthday":"05/10/1991"
+}
+
+### Edit Single contact 
+PUT http://localhost:8080/contacts/651e9c7bc3db0ab6e1060e6d HTTP/1.1 
+content-type: application/json
+
+{
+"firstName":"Lucas", "lastName":"Kumah", "email":"testnew@gmail.com", "favoriteColor":"Black", "birthday":"05/10/1991"
+} 
+
+### DELETE single contact 
+DELETE http://localhost:8080/contacts/651e9c7bc3db0ab6e1060e6d HTTP/1.1
+
+
+
+// PRODUCTION Deploy
+###
+
+###Get Contacts by ID
+GET https://cse341-wilson.onrender.com/contacts
+
+###
+GET https://cse341-wilson.onrender.com/contacts/651561fd3c8ebf6904fb39ec
+
+###
+GET https://cse341-wilson.onrender.com/contacts/651561fd3c8ebf6904fb39ed
+
+###
+GET https://cse341-wilson.onrender.com/contacts/651561fd3c8ebf6904fb39ee
+
+
+### Create single contact
+POST https://cse341-wilson.onrender.com/contacts HTTP/1.1 
+content-type: application/json
+
+{
+"firstName":"Lucas", "lastName":"Kuma", "email":"Lucas1@gmail.com", "favoriteColor":"Red", "birthday":"05/10/1991"
+}
+
+### Edit Single contact 
+PUT https://cse341-wilson.onrender.com/contacts/651e3afbfc0bbcabff9eef6c HTTP/1.1 
+content-type: application/json
+
+{
+"firstName":"Lucas", "lastName":"Kumah", "email":"testnew@gmail.com", "favoriteColor":"Black", "birthday":"05/10/1991"
+} 
+
+### DELETE single contact 
+DELETE https://cse341-wilson.onrender.com/contacts/651e3afbfc0bbcabff9eef6c HTTP/1.1
+
+
+
