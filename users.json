@@ -3,24 +3,30 @@
     "username": "pharo",
     "name": "Felix Wilson Gbedemah",
     "email": "pharo09@gmail.com",
-    "roles": ["user"],
+    "roles": ["admin"],
+    "password": "Afrogbede419",
     "permissions": ["read"],
+    "title": "Development",
     "tasks": ["Identify the issue", "Debug code", "Verify the fix."]
   },
   {
     "username": "skanty",
     "name": "Gifty Akpene Gbedemah",
     "email": "Skanty@gmail.com",
+    "password": "Lil_Skanty",
     "roles": ["user"],
     "permissions": ["read"],
-    "tasks": ["Send invitations", "Book a venue", "Prepare catering."]
+    "title": "Event Planning",
+    "tasks": ["Send invitations", "Book a venue", "Prepare catering"]
   },
   {
     "username": "papa bills",
     "name": "Theophilus Akahoho",
     "email": "papabills@gmail.com",
+    "password": "depaapadepaapa",
     "roles": ["user"],
     "permissions": ["read"],
+    "title": "Daily tasks",
     "tasks": ["Buy groceries", "Pay bills", "Go to work"]
   }
 ]

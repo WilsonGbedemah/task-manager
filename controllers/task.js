@@ -10,16 +10,17 @@ const getAll = async (req, res) => {
     });
 };
 
-// const getSingle = async (req, res) => {
-//     const userId = new ObjectId(req.params.id);
-//     const result = await mongodb.getDb().db().collection('task').find({
-//         _id: userId
-//     });
-//     result.toArray().then((lists) => {
-//         res.setHeader('Content-Type', 'application/json');
-//         res.status(200).json(lists[0]);
-//     });
-// };
+const getSingle = async (req, res) => {
+    const taskName = req.params.name; // Get the task name from the request parameters
+    const result = await mongodb.getDb().db().collection('task').find({
+        name: taskName // Search for the task by name
+    });
+    result.toArray().then((lists) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(lists[0]);
+    });
+};
+
 
 const createTask = async (req, res) => {
     const task = {
@@ -41,32 +42,39 @@ const createTask = async (req, res) => {
     }
 };
 
-// const updateContact = async (req, res) => {
-//     const userId = new ObjectId(req.params.id);
-//     // be aware of updateOne if you only want to update specific fields
-//     const contact = {
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         email: req.body.email,
-//         favoriteColor: req.body.favoriteColor,
-//         birthday: req.body.birthday
-//     };
-//     //console.log('Data received for updateContact:', contact);
-//     const response = await mongodb
-//         .getDb()
-//         .db()
-//         .collection('contacts')
-//         .replaceOne({
-//             _id: userId
-//         }, contact);
-//     console.log(response);
-//     if (response.modifiedCount > 0) {
-//         res.status(204).send();
-//     } else {
-//         console.log('Error creating contact:', response.error);
-//         res.status(500).json(response.error || 'Some error occurred while updating the contact.');
-//     }
-// };
+const updateTask = async (req, res) => {
+    const taskName = req.params.name; // Get the task name from the request parameters
+    const updatedTask = {
+        name: req.body.name,
+        description: req.body.description,
+        dueDate: req.body.dueDate,
+        priority: req.body.priority,
+        status: req.body.status,
+        assignedUser: req.body.assignedUser,
+        notes: req.body.notes
+    };
+
+    const response = await mongodb
+        .getDb()
+        .db()
+        .collection('task')
+        .updateOne({
+                name: taskName
+            }, // Update based on the task name
+            {
+                $set: updatedTask
+            }
+        );
+
+    console.log(response);
+
+    if (response.modifiedCount > 0) {
+        res.status(204).send();
+    } else {
+        console.log('Error updating task:', response.error);
+        res.status(500).json(response.error || 'Some error occurred while updating the task.');
+    }
+};
 
 // const deleteContact = async (req, res) => {
 //     const userId = new ObjectId(req.params.id);
@@ -84,4 +92,6 @@ const createTask = async (req, res) => {
 module.exports = {
     getAll,
     createTask,
+    updateTask,
+    getSingle
 };

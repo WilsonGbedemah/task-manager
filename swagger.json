@@ -1,12 +1,29 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Contacts API",
-    "version": "1.0.0"
+    "description": "This is an api server for a task manager website website.\n",
+    "version": "1.0.0",
+    "title": "Task Manager",
+    "contact": {
+      "email": "afrogbede09@gmail.com"
+    }
   },
-  "host": "localhost:8080",
+  "host": "",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "tasks",
+      "description": "Operations about tasks"
+    },
+    {
+      "name": "Not Yet Implemented",
+      "description": "These API endpoints are designed and will be created in the near future"
+    }
+  ],
   "schemes": ["http"],
   "paths": {
     "/users": {
@@ -15,54 +32,14 @@
         "responses": {
           "200": {
             "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string"
-                      },
-                      "username": {
-                        "type": "string"
-                      },
-                      "roles": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "permissions": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "required": ["id", "name", "email", "username", "roles", "permissions"]
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a new user",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
+            "schema": {
+              "type": "array",
+              "items": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "name": {
                     "type": "string"
                   },
@@ -70,6 +47,9 @@
                     "type": "string"
                   },
                   "username": {
+                    "type": "string"
+                  },
+                  "password": {
                     "type": "string"
                   },
                   "roles": {
@@ -85,22 +65,19 @@
                     }
                   }
                 },
-                "required": ["name", "email", "username", "roles", "permissions"]
+                "required": ["id", "name", "email", "username", "password", "roles", "permissions"]
               }
             }
           }
         },
-        "responses": {
-          "201": {
-            "description": "User created successfully",
+        "post": {
+          "summary": "Create a new user",
+          "requestBody": {
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
                     "name": {
                       "type": "string"
                     },
@@ -108,6 +85,9 @@
                       "type": "string"
                     },
                     "username": {
+                      "type": "string"
+                    },
+                    "password": {
                       "type": "string"
                     },
                     "roles": {
@@ -123,26 +103,362 @@
                       }
                     }
                   },
-                  "required": ["id", "name", "email", "username", "roles", "permissions"]
+                  "required": ["name", "email", "username", "password", "roles", "permissions"]
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "User created successfully",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "username",
+                    "password",
+                    "roles",
+                    "permissions"
+                  ]
+                }
+              },
+              "400": {
+                "description": "Invalid request data"
+              }
+            }
+          }
+        }
+      },
+      "/users/{username}": {
+        "get": {
+          "summary": "Retrieve a user by username",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "description": "The username of the user to retrieve",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "roles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["id", "name", "email", "username", "password", "roles", "permissions"]
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a user by username",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "required": true,
+              "description": "The username of the user to update",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": ["name", "email", "password", "roles", "permissions"]
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "User updated successfully",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "username",
+                    "password",
+                    "roles",
+                    "permissions"
+                  ]
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid request data"
           }
         }
       }
     },
-    "/users/{username}": {
+    "/tasks": {
       "get": {
-        "summary": "Retrieve a user by username",
+        "summary": "Retrieve all tasks",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "assignedUser": {
+                    "type": "integer"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "dueDate",
+                  "priority",
+                  "status",
+                  "assignedUser",
+                  "notes"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "assignedUser": {
+                    "type": "integer"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "dueDate",
+                  "priority",
+                  "status",
+                  "assignedUser",
+                  "notes"
+                ]
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Task created successfully",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "assignedUser": {
+                    "type": "integer"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "dueDate",
+                  "priority",
+                  "status",
+                  "assignedUser",
+                  "notes"
+                ]
+              }
+            },
+            "400": {
+              "description": "Invalid request data"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{name}": {
+      "get": {
+        "summary": "Retrieve a task by name",
         "parameters": [
           {
-            "name": "username",
+            "name": "name",
             "in": "path",
             "required": true,
-            "description": "The username of the user to retrieve",
+            "description": "The name of the task to retrieve",
             "schema": {
               "type": "string"
             }
@@ -151,38 +467,138 @@
         "responses": {
           "200": {
             "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    },
-                    "username": {
-                      "type": "string"
-                    },
-                    "roles": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "permissions": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "required": ["id", "name", "email", "username", "roles", "permissions"]
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "dueDate": {
+                  "type": "string"
+                },
+                "priority": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "assignedUser": {
+                  "type": "integer"
+                },
+                "notes": {
+                  "type": "string"
                 }
+              },
+              "required": [
+                "id",
+                "name",
+                "description",
+                "dueDate",
+                "priority",
+                "status",
+                "assignedUser",
+                "notes"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a task by name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the task to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "assignedUser": {
+                    "type": "integer"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "description",
+                  "dueDate",
+                  "priority",
+                  "status",
+                  "assignedUser",
+                  "notes"
+                ]
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Task updated successfully",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "assignedUser": {
+                    "type": "integer"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "dueDate",
+                  "priority",
+                  "status",
+                  "assignedUser",
+                  "notes"
+                ]
               }
             }
           }

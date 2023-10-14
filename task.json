@@ -1,6 +1,6 @@
 [
   {
-    "name": "Task 1",
+    "name": "development",
     "description": "This is a task to fix buds in code.",
     "dueDate": "2023-10-20",
     "priority": "High",
@@ -9,12 +9,21 @@
     "notes": "This task requires special attention and coordination."
   },
   {
-    "name": "Task 2",
+    "name": "event",
     "description": "This is a task to plan an event.",
     "dueDate": "2023-10-24",
     "priority": "Medium",
     "status": "In Progress",
     "assignedUser": 2,
+    "notes": "This task requires special effort and dedication"
+  },
+  {
+    "name": "routine",
+    "description": "This is a task to plan an event.",
+    "dueDate": "2023-10-24",
+    "priority": "Medium",
+    "status": "In Progress",
+    "assignedUser": 3,
     "notes": "This task requires special effort and dedication"
   }
 ]

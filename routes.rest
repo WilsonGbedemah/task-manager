@@ -1,38 +1,96 @@
-// LOCALHOST
+// LOCALHOST USERS
 ###
-GET http://localhost:8080/contacts
+GET http://localhost:8080/users HTTP/1.1
 
 
-###
-GET http://localhost:8080/task
-
-i
 ### Get user by username
-GET http://localhost:8080/user/username/pharo
+GET http://localhost:8080/users/pharo HTTP/1.1
+###
+GET http://localhost:8080/users/skanty HTTP/1.1
+###
+GET http://localhost:8080/users/papa bills HTTP/1.1
 
-###
-GET http://localhost:8080/contacts/651561fd3c8ebf6904fb39ed
-###
-GET http://localhost:8080/contacts/651561fd3c8ebf6904fb39ee
 
 ### Create single contact
-POST http://localhost:8080/contacts HTTP/1.1 
+POST http://localhost:8080/users HTTP/1.1 
 content-type: application/json
 
 {
-"firstName":"Lucas", "lastName":"Kuma", "email":"Lucas1@gmail.com", "favoriteColor":"Red", "birthday":"05/10/1991"
+    "username": "moni hunter",
+    "name": "Sulley Alhassan",
+    "email": "monihunter1@gmail.com",
+    "password": "MoNeY_11",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "title": "Laundry",
+    "tasks": ["Wash clothes", "Iron clothes", "Fold and arrange clothes"]
 }
 
-### Edit Single contact 
-PUT http://localhost:8080/contacts/651e9c7bc3db0ab6e1060e6d HTTP/1.1 
+### Edit Single user 
+PUT http://localhost:8080/users/papa bills HTTP/1.1 
 content-type: application/json
 
 {
-"firstName":"Lucas", "lastName":"Kumah", "email":"testnew@gmail.com", "favoriteColor":"Black", "birthday":"05/10/1991"
-} 
+    "username": "De papa",
+    "name": "Theophilus Akahoho",
+    "email": "papabills@gmail.com",
+    "password": "TakeitSlow",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "title": "Work",
+    "tasks": ["Service car", "Go for rounds", "Go for goods"]
+}
 
-### DELETE single contact 
-DELETE http://localhost:8080/contacts/651e9c7bc3db0ab6e1060e6d HTTP/1.1
+
+// LOCALHOST TASKS
+###
+GET http://localhost:8080/task HTTP/1.1
+
+### Get task by name
+GET http://localhost:8080/task/development HTTP/1.1
+###
+GET http://localhost:8080/task/event HTTP/1.1
+###
+GET http://localhost:8080/task/routine HTTP/1.1
+
+
+### Create single task
+POST http://localhost:8080/task HTTP/1.1 
+content-type: application/json
+
+{
+    "name": "assignment",
+    "description": "This is a task do and submit a particular coding assignment",
+    "dueDate": "2023-10-15",
+    "priority": "High",
+    "status": "In Progress",
+    "assignedUser": 1,
+    "notes": "This task requires special attention, coordination and collaboration between team members"
+}
+
+### Edit Single task 
+
+PUT http://localhost:8080/task/event HTTP/1.1 
+content-type: application/json
+
+{
+    "name": "function",
+    "description": "This is a task to plan an event.",
+    "dueDate": "2023-10-24",
+    "priority": "High",
+    "status": "Not Started",
+    "assignedUser": 2,
+    "notes": "This task requires special effort and dedication"
+}
+
+
+
+
+
+
+
+
+
 
 
 
