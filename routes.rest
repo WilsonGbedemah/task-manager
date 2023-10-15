@@ -102,19 +102,19 @@ DELETE http://localhost:8080/task/assignment HTTP/1.1
 
 // Production Users
 ###
-GET https://cse341-wilson.onrender.com/users HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/users HTTP/1.1
 
 
 ### Get user by username
-GET https://cse341-wilson.onrender.com/users/pharo HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/users/pharo HTTP/1.1
 ###
-GET https://cse341-wilson.onrender.com/users/skanty HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/users/skanty HTTP/1.1
 ###
-GET https://cse341-wilson.onrender.com/users/papa bills HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/users/papa bills HTTP/1.1
 
 
 ### Create single user
-POST https://cse341-wilson.onrender.com/users HTTP/1.1 
+POST https://task-manager-t3rr.onrender.com/users HTTP/1.1 
 content-type: application/json
 
 {
@@ -129,7 +129,7 @@ content-type: application/json
 }
 
 ### Edit Single user 
-PUT https://cse341-wilson.onrender.com/users/papa bills HTTP/1.1 
+PUT https://task-manager-t3rr.onrender.com/users/papa bills HTTP/1.1 
 content-type: application/json
 
 {
@@ -144,22 +144,22 @@ content-type: application/json
 }
 
 ### DELETE single user 
-DELETE https://cse341-wilson.onrender.com/users/moni hunter HTTP/1.1
+DELETE https://task-manager-t3rr.onrender.com/users/moni hunter HTTP/1.1
 
 // Production TASKS
 ###
-GET https://cse341-wilson.onrender.com/task HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/task HTTP/1.1
 
 ### Get task by name
-GET https://cse341-wilson.onrender.com/task/development HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/task/development HTTP/1.1
 ###
-GET https://cse341-wilson.onrender.com/task/event HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/task/event HTTP/1.1
 ###
-GET https://cse341-wilson.onrender.com/task/routine HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/task/routine HTTP/1.1
 
 
 ### Create single task
-POST https://cse341-wilson.onrender.com/task HTTP/1.1 
+POST https://task-manager-t3rr.onrender.com/task HTTP/1.1 
 content-type: application/json
 
 {
@@ -174,7 +174,7 @@ content-type: application/json
 
 ### Edit Single task 
 
-PUT https://cse341-wilson.onrender.com/task/event HTTP/1.1 
+PUT https://task-manager-t3rr.onrender.com/task/event HTTP/1.1 
 content-type: application/json
 
 {
@@ -188,5 +188,5 @@ content-type: application/json
 }
 
 ### DELETE single task 
-DELETE https://cse341-wilson.onrender.com/assignment HTTP/1.1
+DELETE https://task-manager-t3rr.onrender.com/assignment HTTP/1.1
 
