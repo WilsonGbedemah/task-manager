@@ -126,6 +126,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "username": {
+                  "example": "any"
+                },
                 "name": {
                   "example": "any"
                 },
