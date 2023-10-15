@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const mongodb = require('../db/connect');
-//const { ObjectId } = require('mongodb'); 
+const {
+    ObjectId
+} = require('mongodb');
 
 const getAll = async (req, res) => {
     const result = await mongodb.getDb().db().collection('users').find();
@@ -73,11 +76,29 @@ const updateUser = async (req, res) => {
         res.status(500).json(response.error || 'Some error occurred while updating the user.');
     }
 };
+const deleteUser = async (req, res) => {
+    const userName = req.params.username;
+    const db = mongodb.getDb().db();
+    try {
+        const response = await db.collection('users').deleteOne({
+            username: userName
+        });
+        console.log(response);
+        if (response.deletedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(404).json('User not found');
+        }
+    } catch (error) {
+        res.status(500).json('Some error occurred while deleting the user.');
+    }
+};
 
 
 module.exports = {
     getAll,
     createUser,
     getUser,
-    updateUser
+    updateUser,
+    deleteUser
 };

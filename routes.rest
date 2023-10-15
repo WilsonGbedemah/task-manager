@@ -41,6 +41,8 @@ content-type: application/json
     "tasks": ["Service car", "Go for rounds", "Go for goods"]
 }
 
+### DELETE single user 
+DELETE http://localhost:8080/users/moni hunter HTTP/1.1
 
 // LOCALHOST TASKS
 ###
@@ -83,6 +85,8 @@ content-type: application/json
     "notes": "This task requires special effort and dedication"
 }
 
+### DELETE single task 
+DELETE http://localhost:8080/task/assignment HTTP/1.1
 
 
 
@@ -94,40 +98,95 @@ content-type: application/json
 
 
 
-// PRODUCTION Deploy
+// PRODUCTION Deployment
+
+// Production Users
 ###
+GET https://cse341-wilson.onrender.com/users HTTP/1.1
 
-###Get Contacts by ID
-GET https://cse341-wilson.onrender.com/contacts
 
+### Get user by username
+GET https://cse341-wilson.onrender.com/users/pharo HTTP/1.1
 ###
-GET https://cse341-wilson.onrender.com/contacts/651561fd3c8ebf6904fb39ec
-
+GET https://cse341-wilson.onrender.com/users/skanty HTTP/1.1
 ###
-GET https://cse341-wilson.onrender.com/contacts/651561fd3c8ebf6904fb39ed
-
-###
-GET https://cse341-wilson.onrender.com/contacts/651561fd3c8ebf6904fb39ee
+GET https://cse341-wilson.onrender.com/users/papa bills HTTP/1.1
 
 
-### Create single contact
-POST https://cse341-wilson.onrender.com/contacts HTTP/1.1 
+### Create single user
+POST https://cse341-wilson.onrender.com/users HTTP/1.1 
 content-type: application/json
 
 {
-"firstName":"Lucas", "lastName":"Kuma", "email":"Lucas1@gmail.com", "favoriteColor":"Red", "birthday":"05/10/1991"
+    "username": "moni hunter",
+    "name": "Sulley Alhassan",
+    "email": "monihunter1@gmail.com",
+    "password": "MoNeY_11",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "title": "Laundry",
+    "tasks": ["Wash clothes", "Iron clothes", "Fold and arrange clothes"]
 }
 
-### Edit Single contact 
-PUT https://cse341-wilson.onrender.com/contacts/651e3afbfc0bbcabff9eef6c HTTP/1.1 
+### Edit Single user 
+PUT https://cse341-wilson.onrender.com/users/papa bills HTTP/1.1 
 content-type: application/json
 
 {
-"firstName":"Lucas", "lastName":"Kumah", "email":"testnew@gmail.com", "favoriteColor":"Black", "birthday":"05/10/1991"
-} 
+    "username": "De papa",
+    "name": "Theophilus Akahoho",
+    "email": "papabills@gmail.com",
+    "password": "TakeitSlow",
+    "roles": ["user"],
+    "permissions": ["read"],
+    "title": "Work",
+    "tasks": ["Service car", "Go for rounds", "Go for goods"]
+}
 
-### DELETE single contact 
-DELETE https://cse341-wilson.onrender.com/contacts/651e3afbfc0bbcabff9eef6c HTTP/1.1
+### DELETE single user 
+DELETE https://cse341-wilson.onrender.com/users/moni hunter HTTP/1.1
+
+// Production TASKS
+###
+GET https://cse341-wilson.onrender.com/task HTTP/1.1
+
+### Get task by name
+GET https://cse341-wilson.onrender.com/task/development HTTP/1.1
+###
+GET https://cse341-wilson.onrender.com/task/event HTTP/1.1
+###
+GET https://cse341-wilson.onrender.com/task/routine HTTP/1.1
 
 
+### Create single task
+POST https://cse341-wilson.onrender.com/task HTTP/1.1 
+content-type: application/json
+
+{
+    "name": "assignment",
+    "description": "This is a task do and submit a particular coding assignment",
+    "dueDate": "2023-10-15",
+    "priority": "High",
+    "status": "In Progress",
+    "assignedUser": 1,
+    "notes": "This task requires special attention, coordination and collaboration between team members"
+}
+
+### Edit Single task 
+
+PUT https://cse341-wilson.onrender.com/task/event HTTP/1.1 
+content-type: application/json
+
+{
+    "name": "function",
+    "description": "This is a task to plan an event.",
+    "dueDate": "2023-10-24",
+    "priority": "High",
+    "status": "Not Started",
+    "assignedUser": 2,
+    "notes": "This task requires special effort and dedication"
+}
+
+### DELETE single task 
+DELETE https://cse341-wilson.onrender.com/assignment HTTP/1.1
 

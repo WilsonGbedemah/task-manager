@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const mongodb = require('../db/connect');
-//const ObjectId = require('mongodb').ObjectId;
+const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
     const result = await mongodb.getDb().db().collection('task').find();
@@ -76,22 +77,28 @@ const updateTask = async (req, res) => {
     }
 };
 
-// const deleteContact = async (req, res) => {
-//     const userId = new ObjectId(req.params.id);
-//     const response = await mongodb.getDb().db().collection('contacts').deleteOne({
-//         _id: userId
-//     }, true);
-//     console.log(response);
-//     if (response.deletedCount > 0) {
-//         res.status(204).send();
-//     } else {
-//         res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
-//     }
-// };
+const deleteTask = async (req, res) => {
+    const name = req.params.name;
+    const db = mongodb.getDb().db();
+    try {
+        const response = await db.collection('task').deleteOne({
+            name: name
+        });
+        console.log(response);
+        if (response.deletedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(404).json('User not found');
+        }
+    } catch (error) {
+        res.status(500).json('Some error occurred while deleting the task.');
+    }
+};
 
 module.exports = {
     getAll,
     createTask,
     updateTask,
-    getSingle
+    getSingle,
+    deleteTask
 };
