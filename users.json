@@ -3,8 +3,8 @@
     "username": "pharo",
     "name": "Felix Wilson Gbedemah",
     "email": "pharo09@gmail.com",
-    "roles": ["admin"],
     "password": "Afrogbede419",
+    "roles": ["admin"],
     "permissions": ["read"],
     "title": "Development",
     "tasks": ["Identify the issue", "Debug code", "Verify the fix."]
