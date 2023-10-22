@@ -35,7 +35,7 @@ const getUser = async (req, res) => {
 
     if (!username || !/^[a-zA-Z0-9_]{4,10}$/.test(username)) {
         return res.status(400).json({
-            error: 'The username field must be alphanumeric with underscores and should be 4 to 10 characters long.'
+            error: 'The username field must be provided.'
         });
     }
 
@@ -86,7 +86,7 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to update a contact.');
+        res.status(400).json('Must use a valid user id to update a user.');
     }
     const userId = new ObjectId(req.params.id);
     const updatedUser = {
@@ -111,7 +111,7 @@ const updateUser = async (req, res) => {
         res.status(204).send();
     } else {
         //console.log('Error updating contact:', response.error);
-        res.status(500).json(response.error || 'Some error occurred while updating the contact.');
+        res.status(500).json(response.error || 'Some error occurred while updating the user.');
     }
 };
 
@@ -121,7 +121,7 @@ const deleteUser = async (req, res) => {
 
     // Checking if task name is valid or not
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to delete contact');
+        res.status(400).json('Must use a valid user id to delete user');
     }
     const userId = new ObjectId(req.params.id);
     try {

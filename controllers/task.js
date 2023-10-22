@@ -84,7 +84,7 @@ const createTask = async (req, res) => {
 const updateTask = async (req, res) => {
     // Checking if task Id is valid or not
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must uses a valid contact id to update the contact')
+        res.status(400).json('Must uses a valid task id to update the task')
     }
     const userId = new ObjectId(req.params.id);
     const updatedTask = {
@@ -110,7 +110,7 @@ const updateTask = async (req, res) => {
         res.status(204).send();
     } else {
         //console.log('Error updating contact:', response.error);
-        res.status(500).json(response.error || 'Some error occurred while updating the contact.');
+        res.status(500).json(response.error || 'Some error occurred while updating the task.');
     }
 };
 
@@ -118,7 +118,7 @@ const deleteTask = async (req, res) => {
 
     // Checking if task Id is valid or not
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to delete contact');
+        res.status(400).json('Must use a valid task id to delete task');
     }
     const userId = new ObjectId(req.params.id);
     try {
