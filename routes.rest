@@ -113,7 +113,7 @@ GET https://task-manager-t3rr.onrender.com/users/pharo HTTP/1.1
 ###
 GET https://task-manager-t3rr.onrender.com/users/skanty HTTP/1.1
 ###
-GET https://task-manager-t3rr.onrender.com/users/papa bills HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/users/papa_bills HTTP/1.1
 
 
 ### Create single user
@@ -132,7 +132,7 @@ content-type: application/json
 }
 
 ### Edit Single user 
-PUT https://task-manager-t3rr.onrender.com/users/papa bills HTTP/1.1 
+PUT https://task-manager-t3rr.onrender.com/users/65351dd92d7ed4cc5f298662 HTTP/1.1 
 content-type: application/json
 
 {
@@ -149,6 +149,8 @@ content-type: application/json
 ### DELETE single user 
 DELETE https://task-manager-t3rr.onrender.com/users/moni hunter HTTP/1.1
 
+
+
 // Production TASKS
 ###
 GET https://task-manager-t3rr.onrender.com/task HTTP/1.1
@@ -156,7 +158,7 @@ GET https://task-manager-t3rr.onrender.com/task HTTP/1.1
 ### Get task by name
 GET https://task-manager-t3rr.onrender.com/task/development HTTP/1.1
 ###
-GET https://task-manager-t3rr.onrender.com/task/event HTTP/1.1
+GET https://task-manager-t3rr.onrender.com/task/function HTTP/1.1
 ###
 GET https://task-manager-t3rr.onrender.com/task/routine HTTP/1.1
 
