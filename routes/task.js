@@ -3,15 +3,16 @@ const express = require('express');
 const router = express.Router();
 
 const taskController = require('../controllers/task');
+const validation = require('../middleware/validate');
 
 router.get('/', taskController.getAll);
 
-router.get('/:name', taskController.getSingle);
+router.get('/:name', taskController.getTask);
 
-router.put('/:name', taskController.updateTask);
+router.put('/:id', validation.saveTask, taskController.updateTask);
 
-router.post('/', taskController.createTask);
+router.post('/', validation.saveTask, taskController.createTask);
 
-router.delete('/:name', taskController.deleteTask);
+router.delete('/:id', taskController.deleteTask);
 
 module.exports = router;

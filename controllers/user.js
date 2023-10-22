@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const mongodb = require('../db/connect');
-const {
-    ObjectId
-} = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
+
 
 const getAll = async (req, res) => {
     const result = await mongodb.getDb().db().collection('users').find();
@@ -13,16 +12,56 @@ const getAll = async (req, res) => {
     });
 };
 
+// const getUser = async (req, res) => {
+//     // Checking if username is valid or not
+//     if (!ObjectId.isValid(req.params.username)) {
+//         res.status(400).json('Must use a valid username to find user')
+//     }
+//     const username = req.params.username; // Get the username from the request parameters
+//     const result = await mongodb.getDb().db().collection('users').find({
+//         username: username // Search for the user by username
+//     });
+//     result.toArray().then((lists) => {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.status(200).json(lists[0]);
+//     });
+// };
+
+
 const getUser = async (req, res) => {
-    const username = req.params.username; // Get the username from the request parameters
-    const result = await mongodb.getDb().db().collection('users').find({
-        username: username // Search for the user by username
-    });
-    result.toArray().then((lists) => {
+    const {
+        username
+    } = req.params;
+
+    if (!username || !/^[a-zA-Z0-9_]{4,10}$/.test(username)) {
+        return res.status(400).json({
+            error: 'The username field must be alphanumeric with underscores and should be 4 to 10 characters long.'
+        });
+    }
+
+    try {
+        const result = await mongodb.getDb().db().collection('users').findOne({
+            username
+        });
+
+        if (!result) {
+            return res.status(404).json({
+                message: 'User not found.'
+            });
+        }
+
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists[0]);
-    });
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).json({
+            error: 'Internal server error'
+        });
+    }
 };
+
+
 
 const createUser = async (req, res) => {
     const user = {
@@ -46,7 +85,10 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const username = req.params.username; // Get the username from the request parameters
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to update a contact.');
+    }
+    const userId = new ObjectId(req.params.id);
     const updatedUser = {
         name: req.body.name,
         email: req.body.email,
@@ -56,33 +98,36 @@ const updateUser = async (req, res) => {
         title: req.body.title,
         tasks: req.body.tasks
     };
-
+    //console.log('Data received for updateContact:', contact);
     const response = await mongodb
         .getDb()
         .db()
         .collection('users')
-        .updateOne({
-            username: username // Update based on the username
-        }, {
-            $set: updatedUser
-        });
-
+        .replaceOne({
+            _id: userId
+        }, updatedUser);
     console.log(response);
-
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
-        console.log('Error updating user:', response.error);
-        res.status(500).json(response.error || 'Some error occurred while updating the user.');
+        //console.log('Error updating contact:', response.error);
+        res.status(500).json(response.error || 'Some error occurred while updating the contact.');
     }
 };
+
+
+
 const deleteUser = async (req, res) => {
-    const userName = req.params.username;
-    const db = mongodb.getDb().db();
+
+    // Checking if task name is valid or not
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to delete contact');
+    }
+    const userId = new ObjectId(req.params.id);
     try {
-        const response = await db.collection('users').deleteOne({
-            username: userName
-        });
+        const response = await mongodb.getDb().db().collection('users').deleteOne({
+            _id: userId
+        }, true);
         console.log(response);
         if (response.deletedCount > 0) {
             res.status(204).send();
@@ -93,6 +138,7 @@ const deleteUser = async (req, res) => {
         res.status(500).json('Some error occurred while deleting the user.');
     }
 };
+
 
 
 module.exports = {

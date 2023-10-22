@@ -2,10 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Task Manager",
-    "contact": {
-      "email": "afrogbede09@gmail.com"
-    },
-    "description": "Manager Tasks",
+    "description": "Manages task of users",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
@@ -18,12 +15,17 @@
     {
       "name": "task",
       "description": "Operations about tasks"
+    },
+    {
+      "name": "default",
+      "description": "Operations about api-docs"
     }
   ],
   "schemes": ["http"],
   "paths": {
     "/api-docs": {
       "get": {
+        "tags": ["default"],
         "description": "",
         "responses": {
           "default": {
@@ -35,7 +37,7 @@
     "/users/": {
       "get": {
         "tags": ["users"],
-        "description": "Get all users",
+        "description": "",
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -45,7 +47,7 @@
       },
       "post": {
         "tags": ["users"],
-        "description": "Create new user",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -84,6 +86,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -94,7 +99,7 @@
     "/users/{username}": {
       "get": {
         "tags": ["users"],
-        "description": "Get user by username",
+        "description": "",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -107,15 +112,26 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/users/{id}": {
       "put": {
         "tags": ["users"],
-        "description": "update user by username",
+        "description": "",
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -126,9 +142,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
-                  "example": "any"
-                },
                 "name": {
                   "example": "any"
                 },
@@ -158,6 +171,12 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -165,10 +184,10 @@
       },
       "delete": {
         "tags": ["users"],
-        "description": "Delete user by username",
+        "description": "",
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -177,6 +196,12 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -187,7 +212,7 @@
     "/task/": {
       "get": {
         "tags": ["task"],
-        "description": "Get all tasks",
+        "description": "",
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -197,7 +222,7 @@
       },
       "post": {
         "tags": ["task"],
-        "description": "Create new task",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -234,6 +259,9 @@
           "201": {
             "description": "Created"
           },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -243,7 +271,7 @@
     "/task/{name}": {
       "get": {
         "tags": ["task"],
-        "description": "Get task by name",
+        "description": "",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -256,15 +284,26 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/task/{id}": {
       "put": {
         "tags": ["task"],
-        "description": "update task",
+        "description": "",
         "parameters": [
           {
-            "name": "name",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -304,6 +343,12 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -311,10 +356,10 @@
       },
       "delete": {
         "tags": ["task"],
-        "description": "Delete task by name",
+        "description": "",
         "parameters": [
           {
-            "name": "name",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -323,6 +368,12 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
