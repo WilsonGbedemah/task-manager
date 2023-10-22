@@ -90,6 +90,7 @@ const updateUser = async (req, res) => {
     }
     const userId = new ObjectId(req.params.id);
     const updatedUser = {
+        username: req.body.username,
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,

@@ -8,7 +8,8 @@ GET http://localhost:8080/users/pharo HTTP/1.1
 ###
 GET http://localhost:8080/users/skanty HTTP/1.1
 ###
-GET http://localhost:8080/users/papa bills HTTP/1.1
+GET http://localhost:8080/users/papa_bills HTTP/1.1
+
 
 
 ### Create single contact
@@ -27,11 +28,11 @@ content-type: application/json
 }
 
 ### Edit Single user 
-PUT http://localhost:8080/users/papa bills HTTP/1.1 
+PUT http://localhost:8080/users/65351dd92d7ed4cc5f298662 HTTP/1.1 
 content-type: application/json
 
 {
-    "username": "De papa",
+    "username" :"bills",
     "name": "Theophilus Akahoho",
     "email": "papabills@gmail.com",
     "password": "TakeitSlow",
@@ -42,7 +43,9 @@ content-type: application/json
 }
 
 ### DELETE single user 
-DELETE http://localhost:8080/users/moni hunter HTTP/1.1
+DELETE http://localhost:8080/users/65351dffebe849068b008e97 HTTP/1.1
+
+
 
 // LOCALHOST TASKS
 ###
@@ -72,7 +75,7 @@ content-type: application/json
 
 ### Edit Single task 
 
-PUT http://localhost:8080/task/event HTTP/1.1 
+PUT http://localhost:8080/task/65293a68f08455e0eb68b13d HTTP/1.1 
 content-type: application/json
 
 {
@@ -86,7 +89,7 @@ content-type: application/json
 }
 
 ### DELETE single task 
-DELETE http://localhost:8080/task/assignment HTTP/1.1
+DELETE http://localhost:8080/task/65351ef91b061591c643ae84 HTTP/1.1
 
 
 
