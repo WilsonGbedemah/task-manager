@@ -3,8 +3,8 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
     info: {
-        title: "My Contacts API",
-        description: "Contacts API"
+        title: "Task Manager ",
+        description: "Manages task of users"
     },
     host: "localhost:8080",
     schemes: ['http'],

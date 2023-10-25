@@ -1,9 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
+    "description": "This is an api server task builder website.\n",
+    "version": "1.0.0",
     "title": "Task Manager",
-    "description": "Manages task of users",
-    "version": "1.0.0"
+    "contact": {
+      "email": "afrogbede09@gmail.com"
+    }
   },
   "host": "localhost:8080",
   "basePath": "/",
@@ -13,27 +16,30 @@
       "description": "Operations about users"
     },
     {
-      "name": "task",
+      "name": "tasks",
       "description": "Operations about tasks"
-    },
-    {
-      "name": "default",
-      "description": "Operations about api-docs"
     }
   ],
   "schemes": ["http"],
-  "paths": {
-    "/api-docs": {
-      "get": {
-        "tags": ["default"],
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://dev-wsizx7e60eyktpeh.us.auth0.com",
+      "flow": "accessCode",
+      "scopes": {
+        "read:users": "Read access to user information",
+        "write:users": "Write access to user information",
+        "read:tasks": "Read access to task information",
+        "write:tasks": "Write access to task information"
       }
-    },
+    }
+  },
+  "security": [
+    {
+      "oauth2": ["read:users", "write:users", "read:tasks", "write:tasks"]
+    }
+  ],
+  "paths": {
     "/users/": {
       "get": {
         "tags": ["users"],
@@ -43,7 +49,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["read:users"]
+          }
+        ]
       },
       "post": {
         "tags": ["users"],
@@ -93,7 +104,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["write:users"]
+          }
+        ]
       }
     },
     "/users/{username}": {
@@ -122,7 +138,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["read:users"]
+          }
+        ]
       }
     },
     "/users/{id}": {
@@ -142,6 +163,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "username": {
+                  "example": "any"
+                },
                 "name": {
                   "example": "any"
                 },
@@ -180,7 +204,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["write:users"]
+          }
+        ]
       },
       "delete": {
         "tags": ["users"],
@@ -206,22 +235,32 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["write:users"]
+          }
+        ]
       }
     },
     "/task/": {
       "get": {
-        "tags": ["task"],
+        "tags": ["tasks"],
         "description": "",
         "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["read:tasks"]
+          }
+        ]
       },
       "post": {
-        "tags": ["task"],
+        "tags": ["tasks"],
         "description": "",
         "parameters": [
           {
@@ -265,12 +304,17 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["write:tasks"]
+          }
+        ]
       }
     },
     "/task/{name}": {
       "get": {
-        "tags": ["task"],
+        "tags": ["tasks"],
         "description": "",
         "produces": ["application/json"],
         "parameters": [
@@ -294,12 +338,17 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["read:tasks"]
+          }
+        ]
       }
     },
     "/task/{id}": {
       "put": {
-        "tags": ["task"],
+        "tags": ["tasks"],
         "description": "",
         "parameters": [
           {
@@ -352,10 +401,15 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["write:tasks"]
+          }
+        ]
       },
       "delete": {
-        "tags": ["task"],
+        "tags": ["tasks"],
         "description": "",
         "parameters": [
           {
@@ -378,7 +432,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": ["write:tasks"]
+          }
+        ]
       }
     }
   }
