@@ -24,7 +24,7 @@
   "securityDefinitions": {
     "oauth2": {
       "type": "oauth2",
-      "authorizationUrl": "",
+      "authorizationUrl": "https://dev-wsizx7e60eyktpeh.us.auth0.com",
       "flow": "accessCode",
       "scopes": {
         "read:users": "Read access to user information",
