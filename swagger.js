@@ -6,8 +6,10 @@ const doc = {
         title: "Task Manager ",
         description: "Manages task of users"
     },
-    host: "https://task-manager-t3rr.onrender.com",
-    schemes: ['https'],
+    // host: "https://task-manager-t3rr.onrender.com",
+    // schemes: ['https']
+    host: "localhost:8080",
+    schemes: ['http'],
 };
 
 const outputFile = './swagger.json';

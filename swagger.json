@@ -8,7 +8,7 @@
       "email": "afrogbede09@gmail.com"
     }
   },
-  "host": "https://task-manager-t3rr.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "tags": [
     {
@@ -20,7 +20,7 @@
       "description": "Operations about tasks"
     }
   ],
-  "schemes": ["https"],
+  "schemes": ["http"],
   "securityDefinitions": {
     "oauth2Implicit": {
       "type": "oauth2",
